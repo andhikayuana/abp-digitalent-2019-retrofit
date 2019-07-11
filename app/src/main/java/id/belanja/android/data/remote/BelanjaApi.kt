@@ -1,6 +1,8 @@
 package id.belanja.android.data.remote
 
 import id.belanja.android.BuildConfig
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -10,20 +12,22 @@ import retrofit2.converter.gson.GsonConverterFactory
  **/
 object BelanjaApi {
 
-//    private val interceptor = Interceptor {chain ->
-//
-//        val request = chain.request()
-//            .newBuilder()
-//            .addHeader("Authorization", "Bearer TOKENHERE")
-//            .build()
-//
-//        return@Interceptor chain.proceed(request)
-//    }
+    private fun logging(): HttpLoggingInterceptor {
+        val logging = HttpLoggingInterceptor()
+        logging.level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
+        else HttpLoggingInterceptor.Level.NONE
+        return logging
+    }
+
+    private val client: OkHttpClient =
+        OkHttpClient.Builder()
+            .addInterceptor(logging())
+            .build()
 
     private fun createRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
-//            .client(interceptor)
+            .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
