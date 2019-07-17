@@ -1,6 +1,7 @@
 package id.belanja.android.data.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /**
  * @author Yuana andhikayuana@gmail.com
@@ -15,4 +16,4 @@ data class Product(
     val name: String,
     @SerializedName("price")
     val price: Int
-)
+) : Serializable

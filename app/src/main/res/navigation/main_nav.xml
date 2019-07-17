@@ -5,5 +5,16 @@
             app:startDestination="@id/mainFragment">
 
     <fragment android:id="@+id/mainFragment" android:name="id.belanja.android.MainFragment"
-              android:label="fragment_main" tools:layout="@layout/fragment_main"/>
+              android:label="fragment_main" tools:layout="@layout/fragment_main">
+        <action android:id="@+id/action_mainFragment_to_productAddFragment" app:destination="@id/productAddFragment"/>
+        <action android:id="@+id/action_mainFragment_to_productDetailFragment"
+                app:destination="@id/productDetailFragment"/>
+        <argument android:name="PRODUCT_DATA" app:argType="id.belanja.android.data.model.Product"/>
+    </fragment>
+    <fragment android:id="@+id/productAddFragment" android:name="id.belanja.android.ProductAddFragment"
+              android:label="fragment_product_add" tools:layout="@layout/fragment_product_add">
+        <argument android:name="PRODUCT_DATA" app:argType="id.belanja.android.data.model.Product"/>
+    </fragment>
+    <fragment android:id="@+id/productDetailFragment" android:name="id.belanja.android.ProductDetailFragment"
+              android:label="fragment_product_detail" tools:layout="@layout/fragment_product_detail"/>
 </navigation>

@@ -13,6 +13,10 @@ class MainViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             tvProductName.text = product.name
             tvProductPrice.text = product.price.toString()
             Glide.with(this).load(product.image).into(ivProduct)
+            setOnClickListener {
+                //todo
+                //
+            }
         }
     }
 
